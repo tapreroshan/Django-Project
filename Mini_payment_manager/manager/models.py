@@ -15,11 +15,28 @@ class ServiceUser(models.Model):
     name = models.CharField(max_length=100)
     email =models.EmailField()
     age = models.IntegerField()
-    choices = GENDER_CHOICES
+    gender = models.CharField(max_length=1,choices=GENDER_CHOICES,default="Male")
 
     def __str__(self):
         return self.name
 
 class Services(models.Model):
+    SERVICES_TYPE = [
+        ('Mobile Recharge', 'Mobile Recharge'),
+        ('DTH Recharge', 'DTH Recharge'),
+        ('Insurance payment', 'Insurance payment'),
 
+    ]
+    MODE_OF_PAYMENT = [
+        ('UPI', 'UPI'),
+        ('internet banking', 'internet banking'),
+        ('card payment', 'card payment'),
 
+    ]
+    type = models.CharField(max_length=40,choices=SERVICES_TYPE)
+    payment_type =models.CharField(max_length=40,choices=MODE_OF_PAYMENT)
+    company = models.CharField(max_length=100)
+    subscription = models.ManyToManyField()
+    def __str__(self):
+        return self.company
+    
