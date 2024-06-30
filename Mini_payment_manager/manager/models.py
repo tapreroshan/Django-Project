@@ -36,7 +36,16 @@ class Services(models.Model):
     type = models.CharField(max_length=40,choices=SERVICES_TYPE)
     payment_type =models.CharField(max_length=40,choices=MODE_OF_PAYMENT)
     company = models.CharField(max_length=100)
-    subscription = models.ManyToManyField()
     def __str__(self):
         return self.company
     
+class Subscription(models.Model):
+    user = models.ForeignKey(ServiceUser,on_delete=models.CASCADE)
+    services = models.ForeignKey(Services,on_delete=models.CASCADE)
+    amount = models.DecimalField()
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.name
+
+
