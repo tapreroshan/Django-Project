@@ -42,7 +42,7 @@ class Services(models.Model):
 class Subscription(models.Model):
     user = models.ForeignKey(ServiceUser,on_delete=models.CASCADE)
     services = models.ForeignKey(Services,on_delete=models.CASCADE)
-    amount = models.DecimalField()
+    amount = models.IntegerField()
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
