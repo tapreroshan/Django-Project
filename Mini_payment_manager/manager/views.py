@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import ServiceUser, Subscription, Services
-
+from .forms import ServiceForm
 # User registration view
 def register(request):
     if request.method == 'POST':
@@ -66,3 +66,13 @@ class ServiceListView(LoginRequiredMixin, ListView):
 def service_detail(request):
     services = Services.objects.all()
     return render(request, 'service_detail.html', {'service': services})
+
+def add_service(request):
+    if request.method == 'POST':
+        form = ServiceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('service_list')  
+    else:
+        form = ServiceForm()
+    return render(request, 'manager/add_service.html', {'form': form})
