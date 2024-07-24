@@ -4,8 +4,8 @@ Mini Payment Manager
 
 Features:
 
-    - User registration and authentication
-    - Manage user profiles with details like name, email, age, and gender
-    - Add, view, and manage services and subscriptions
-    - Different payment modes support
-    - User-friendly interface with responsive design
+  - User registration and authentication
+  - Manage user profiles with details like name, email, age, and gender
+  - Add, view, and manage services and subscriptions
+  - Different payment modes support
+  - User-friendly interface with responsive design
