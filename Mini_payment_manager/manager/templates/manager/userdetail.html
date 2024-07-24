@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Detail</title>
-</head>
-<body>
-    <h1>User Detail</h1>
-    <h2>User Name : {{user.name}}</h2>
-    <h2>Email : {{user.email}}</h2>
-    <h2>Age : {{user.age}}</h2>
-    <h3>Gender : {{user.gender}} </h3>
-    <br>
-    <h1>Subscriptions</h1>
-    <ul>
-        {% for sub in Subscriptions %}
-        <li> Service Type : {{sub.Services.type}} </li>
-        <li> Payment Type : {{sub.Services.payment_type}}
-            </li>
-        <li> Amount : {{sub.amount}}</li>
-        <li> Date ; {{sub.date}} </li>
-        
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %}User Detail{% endblock %}
+{% block content %}
+  <h2>{{ user.name }}</h2>
+  <p>Email: {{ user.email }}</p>
+  <p>Age: {{ user.age }}</p>
+  <p>Gender: {{ user.get_gender_display }}</p>
+  <h3>Subscriptions</h3>
+  <ul>
+      {% for subscription in subscription %}
+          <li>{{ subscription.services.type }} - {{ subscription.amount }} - {{ subscription.date }}</li>
+      {% endfor %}
+  </ul>
+{% endblock %}

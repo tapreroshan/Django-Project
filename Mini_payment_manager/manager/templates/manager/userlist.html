@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
-</head>
-<body>
-    <h1>Users</h1>
-    <ul>
-        <li>
-            <a href="{%url 'userdetail' user.id}">{{user.name}}</a>
-        </li>
-    </ul>
-    
-</body>
-</html>
+
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %}User List{% endblock %}
+{% block content %}
+  <h2>User List</h2>
+  <ul>
+      {% for user in user %}
+          <li><a href="{% url 'user_detail' user.id %}">{{ user.name }}</a></li>
+      {% endfor %}
+  </ul>
+{% endblock %}

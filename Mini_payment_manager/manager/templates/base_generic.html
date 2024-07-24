@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Mini Payment Manager{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></p>
+        {% endif %}
+    </header>
+    <nav>
+        <a href="{% url 'user_list' %}">Users</a>
+        <a href="{% url 'service_list' %}">Services</a>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+   
+</body>
+</html>
